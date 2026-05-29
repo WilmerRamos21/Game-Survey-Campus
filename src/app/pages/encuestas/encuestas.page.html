@@ -4,7 +4,6 @@
 
     <div class="toolbar-content">
 
-      <!-- TITULOS -->
       <div>
 
         <h1 class="app-title">
@@ -24,13 +23,10 @@
 
       </div>
 
-      <!-- ACCIONES -->
       <div class="header-actions">
 
-        <!-- USUARIO -->
         <ng-container *ngIf="usuarioLogeado; else invitado">
 
-        <!-- DASHBOARD -->
         <ion-button
           color="tertiary"
           (click)="irDashboard()"
@@ -43,7 +39,6 @@
 
         </ion-button>
 
-          <!-- NUEVA ENCUESTA -->
           <ion-button
             class="add-btn"
             shape="round"
@@ -54,7 +49,6 @@
 
           </ion-button>
 
-          <!-- LOGOUT -->
           <ion-button
             class="logout-btn"
             shape="round"
@@ -68,7 +62,6 @@
 
         </ng-container>
 
-        <!-- INVITADO -->
         <ng-template #invitado>
 
           <ion-button
@@ -97,8 +90,7 @@
 </ion-header>
 
 <ion-content [fullscreen]="true" class="content-bg">
-    <!-- HERO -->
-  <div class="hero-banner">
+    <div class="hero-banner">
 
     <div class="hero-overlay">
 
@@ -114,7 +106,6 @@
 
   </div>
 
-  <!-- PROMOCIÓN APP -->
   <div class="promo-card">
 
     <div class="promo-content">
@@ -132,10 +123,8 @@
         ¿Te gustaría crear una cuenta y probarla?
       </p>
 
-      <!-- BOTONES -->
       <div class="promo-actions">
 
-        <!-- REGISTRO -->
         <ion-button
           color="success"
           shape="round"
@@ -151,11 +140,10 @@
 
         </ion-button>
 
-        <!-- APK -->
         <ion-button
           color="primary"
           shape="round"
-          href="TU_LINK_APK"
+          href="https://github.com/WilmerRamos21/Game-Survey-Campus/raw/refs/heads/main/game-survey-campus.apk"
           target="_blank"
         >
 
@@ -170,11 +158,10 @@
 
       </div>
 
-      <!-- QR -->
       <div class="qr-container">
 
         <img
-          src="assets/img/qr-app.png"
+          src="https://api.qrserver.com/v1/create-qr-code/?size=170x170&data=https://github.com/WilmerRamos21/Game-Survey-Campus/raw/refs/heads/main/game-survey-campus.apk"
           alt="QR descarga app"
           class="qr-image"
         />
@@ -189,7 +176,6 @@
 
   </div>
 
-  <!-- LISTA ENCUESTAS -->
   <div class="surveys-container">
 
     <div
@@ -197,7 +183,6 @@
       class="survey-card"
     >
 
-      <!-- FOTO -->
       <div class="image-wrapper">
 
         <img
@@ -208,20 +193,16 @@
 
       </div>
 
-      <!-- INFO -->
       <div class="survey-info">
 
-        <!-- JUEGO -->
         <h2 class="game-title">
           {{ encuesta.videojuego_favorito }}
         </h2>
 
-        <!-- PERSONA -->
         <p class="alias">
           👤 {{ encuesta.nombre_alias }}
         </p>
 
-        <!-- BADGES -->
         <div class="badges">
 
           <ion-badge color="primary">
@@ -238,7 +219,6 @@
 
         </div>
 
-        <!-- DETALLES -->
         <div class="details">
 
           <p class="location">
@@ -251,17 +231,14 @@
 
         </div>
 
-        <!-- COMENTARIO -->
         <p class="comment">
 
           "{{ encuesta.comentario }}"
 
         </p>
 
-        <!-- BOTONES -->
         <div class="actions">
 
-          <!-- DETALLE -->
           <ion-button
             color="success"
             fill="solid"
@@ -272,7 +249,6 @@
 
           </ion-button>
 
-          <!-- EDITAR -->
           <ion-button
             *ngIf="usuarioLogeado"
             color="warning"
