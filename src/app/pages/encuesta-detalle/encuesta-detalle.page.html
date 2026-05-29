@@ -1,0 +1,227 @@
+<ion-header class="detail-header">
+
+  <ion-toolbar>
+
+    <ion-buttons slot="start">
+
+      <ion-back-button
+        defaultHref="/encuestas">
+      </ion-back-button>
+
+    </ion-buttons>
+
+    <ion-title>
+      🎮 Detalle de Encuesta
+    </ion-title>
+
+  </ion-toolbar>
+
+</ion-header>
+
+<ion-content [fullscreen]="true" class="detail-bg">
+
+  <!-- LOADING -->
+  <div
+    *ngIf="cargando"
+    class="loading-container"
+  >
+
+    <ion-spinner name="crescent"></ion-spinner>
+
+    <p>Cargando encuesta...</p>
+
+  </div>
+
+  <!-- DETALLE -->
+  <div *ngIf="!cargando && encuesta">
+
+    <!-- HERO -->
+    <div class="hero-section">
+
+      <div class="image-container">
+
+        <img
+          *ngIf="encuesta.foto_url"
+          [src]="encuesta.foto_url"
+          class="cover-image"
+        />
+
+        <div
+          *ngIf="!encuesta.foto_url"
+          class="placeholder"
+        >
+
+          <ion-icon name="people-outline"></ion-icon>
+
+          <p>
+            Evidencia de la encuesta
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- CONTENIDO -->
+    <div class="content-container">
+
+      <!-- TITULO -->
+      <div class="title-section">
+
+        <h1>
+          {{ encuesta.videojuego_favorito }}
+        </h1>
+
+        <div class="badges">
+
+          <ion-badge color="primary">
+            {{ encuesta.plataforma }}
+          </ion-badge>
+
+          <ion-badge color="tertiary">
+            {{ encuesta.genero_favorito }}
+          </ion-badge>
+
+        </div>
+
+      </div>
+
+      <!-- PERSONA -->
+      <div class="info-card">
+
+        <div class="info-row">
+
+          <div class="info-box">
+
+            <ion-icon
+              name="person-outline">
+            </ion-icon>
+
+            <div>
+
+              <p>Encuestado</p>
+
+              <h3>
+                {{ encuesta.nombre_alias }}
+              </h3>
+
+            </div>
+
+          </div>
+
+          <div class="info-box">
+
+            <ion-icon
+              name="school-outline">
+            </ion-icon>
+
+            <div>
+
+              <p>Rol</p>
+
+              <h3>
+                {{ encuesta.rol }}
+              </h3>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- EDAD Y FECHA -->
+      <div class="info-card">
+
+        <div class="info-row">
+
+          <div class="info-box">
+
+            <ion-icon
+              name="calendar-outline">
+            </ion-icon>
+
+            <div>
+
+              <p>Edad</p>
+
+              <h3>
+                {{ encuesta.edad_rango }}
+              </h3>
+
+            </div>
+
+          </div>
+
+          <div class="info-box">
+
+            <ion-icon
+              name="time-outline">
+            </ion-icon>
+
+            <div>
+
+              <p>Fecha</p>
+
+              <h3>
+                {{ encuesta.fecha | date:'short' }}
+              </h3>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- UBICACION -->
+      <div class="description-card">
+
+        <h2>
+          📍 Ubicación
+        </h2>
+
+        <p>
+          {{ encuesta.lugar }}
+        </p>
+
+        <div class="gps-info">
+
+          <span>
+            Lat:
+            {{ encuesta.latitud }}
+          </span>
+
+          <span>
+            Lng:
+            {{ encuesta.longitud }}
+          </span>
+
+        </div>
+
+      </div>
+
+      <!-- COMENTARIO -->
+      <div
+        class="description-card"
+        *ngIf="encuesta.comentario"
+      >
+
+        <h2>
+          💬 Comentario
+        </h2>
+
+        <p>
+          {{ encuesta.comentario }}
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</ion-content>

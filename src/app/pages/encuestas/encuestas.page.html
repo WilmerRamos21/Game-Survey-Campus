@@ -1,0 +1,295 @@
+<ion-header class="custom-header" [translucent]="true">
+
+  <ion-toolbar>
+
+    <div class="toolbar-content">
+
+      <!-- TITULOS -->
+      <div>
+
+        <h1 class="app-title">
+          🎮 Game Survey Campus
+        </h1>
+
+        <p class="app-subtitle">
+          Encuestas gamer dentro del campus
+        </p>
+
+        <p
+          class="welcome-user"
+          *ngIf="usuarioLogeado"
+        >
+          Bienvenido encuestador 🎮
+        </p>
+
+      </div>
+
+      <!-- ACCIONES -->
+      <div class="header-actions">
+
+        <!-- USUARIO -->
+        <ng-container *ngIf="usuarioLogeado; else invitado">
+
+        <!-- DASHBOARD -->
+        <ion-button
+          color="tertiary"
+          (click)="irDashboard()"
+        >
+
+          <ion-icon
+            name="stats-chart-outline"
+            slot="start">
+          </ion-icon>
+
+        </ion-button>
+
+          <!-- NUEVA ENCUESTA -->
+          <ion-button
+            class="add-btn"
+            shape="round"
+            (click)="nuevo()"
+          >
+
+            <ion-icon name="add-outline"></ion-icon>
+
+          </ion-button>
+
+          <!-- LOGOUT -->
+          <ion-button
+            class="logout-btn"
+            shape="round"
+            color="danger"
+            (click)="logout()"
+          >
+
+            <ion-icon name="log-out-outline"></ion-icon>
+
+          </ion-button>
+
+        </ng-container>
+
+        <!-- INVITADO -->
+        <ng-template #invitado>
+
+          <ion-button
+            class="login-btn"
+            shape="round"
+            (click)="irLogin()"
+          >
+
+            <ion-icon
+              name="log-in-outline"
+              slot="start">
+            </ion-icon>
+
+            Iniciar sesión
+
+          </ion-button>
+
+        </ng-template>
+
+      </div>
+
+    </div>
+
+  </ion-toolbar>
+
+</ion-header>
+
+<ion-content [fullscreen]="true" class="content-bg">
+    <!-- HERO -->
+  <div class="hero-banner">
+
+    <div class="hero-overlay">
+
+      <h2>
+        ¿Cuál es tu videojuego favorito?
+      </h2>
+
+      <p>
+        Explora las encuestas realizadas dentro del campus
+      </p>
+
+    </div>
+
+  </div>
+
+  <!-- PROMOCIÓN APP -->
+  <div class="promo-card">
+
+    <div class="promo-content">
+
+      <h2>
+        🎮 Prueba Game Survey Campus
+      </h2>
+
+      <p>
+        Estamos probando una app desarrollada en Ionic
+        para registrar videojuegos favoritos dentro del campus.
+      </p>
+
+      <p class="promo-highlight">
+        ¿Te gustaría crear una cuenta y probarla?
+      </p>
+
+      <!-- BOTONES -->
+      <div class="promo-actions">
+
+        <!-- REGISTRO -->
+        <ion-button
+          color="success"
+          shape="round"
+          (click)="irLogin()"
+        >
+
+          <ion-icon
+            name="person-add-outline"
+            slot="start">
+          </ion-icon>
+
+          Crear cuenta
+
+        </ion-button>
+
+        <!-- APK -->
+        <ion-button
+          color="primary"
+          shape="round"
+          href="TU_LINK_APK"
+          target="_blank"
+        >
+
+          <ion-icon
+            name="download-outline"
+            slot="start">
+          </ion-icon>
+
+          Descargar APK
+
+        </ion-button>
+
+      </div>
+
+      <!-- QR -->
+      <div class="qr-container">
+
+        <img
+          src="assets/img/qr-app.png"
+          alt="QR descarga app"
+          class="qr-image"
+        />
+
+        <p>
+          Escanea el QR para descargar la app
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- LISTA ENCUESTAS -->
+  <div class="surveys-container">
+
+    <div
+      *ngFor="let encuesta of encuestas"
+      class="survey-card"
+    >
+
+      <!-- FOTO -->
+      <div class="image-wrapper">
+
+        <img
+          [src]="encuesta.foto_url"
+          [alt]="encuesta.videojuego_favorito"
+          class="survey-image"
+        />
+
+      </div>
+
+      <!-- INFO -->
+      <div class="survey-info">
+
+        <!-- JUEGO -->
+        <h2 class="game-title">
+          {{ encuesta.videojuego_favorito }}
+        </h2>
+
+        <!-- PERSONA -->
+        <p class="alias">
+          👤 {{ encuesta.nombre_alias }}
+        </p>
+
+        <!-- BADGES -->
+        <div class="badges">
+
+          <ion-badge color="primary">
+            {{ encuesta.plataforma }}
+          </ion-badge>
+
+          <ion-badge color="tertiary">
+            {{ encuesta.genero_favorito }}
+          </ion-badge>
+
+          <ion-badge color="warning">
+            {{ encuesta.rol }}
+          </ion-badge>
+
+        </div>
+
+        <!-- DETALLES -->
+        <div class="details">
+
+          <p class="location">
+            📍 {{ encuesta.lugar }}
+          </p>
+
+          <p class="date">
+            🕒 {{ encuesta.fecha | date:'short' }}
+          </p>
+
+        </div>
+
+        <!-- COMENTARIO -->
+        <p class="comment">
+
+          "{{ encuesta.comentario }}"
+
+        </p>
+
+        <!-- BOTONES -->
+        <div class="actions">
+
+          <!-- DETALLE -->
+          <ion-button
+            color="success"
+            fill="solid"
+            (click)="verDetalle(encuesta.id)"
+          >
+
+            <ion-icon name="eye-outline"></ion-icon>
+
+          </ion-button>
+
+          <!-- EDITAR -->
+          <ion-button
+            *ngIf="usuarioLogeado"
+            color="warning"
+            fill="solid"
+            (click)="editar(encuesta.id)"
+          >
+
+            <ion-icon name="create-outline"></ion-icon>
+
+          </ion-button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</ion-content>

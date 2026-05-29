@@ -1,0 +1,165 @@
+/* FONDO */
+.login-bg {
+  --background: linear-gradient(
+    180deg,
+    #0f172a,
+    #111827,
+    #1e293b
+  );
+}
+
+/* HEADER */
+.login-header ion-toolbar {
+  --background: transparent;
+  --color: white;
+}
+
+/* CONTENEDOR */
+.login-container {
+  min-height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  padding: 24px;
+}
+
+/* LOGO */
+.logo-section {
+  text-align: center;
+
+  margin-bottom: 30px;
+}
+
+.logo-circle {
+  width: 110px;
+  height: 110px;
+
+  margin: 0 auto 20px;
+
+  border-radius: 50%;
+
+  background: linear-gradient(
+    135deg,
+    #06b6d4,
+    #3b82f6
+  );
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  box-shadow: 0 10px 30px rgba(59,130,246,0.4);
+}
+
+.logo-circle ion-icon {
+  font-size: 54px;
+  color: white;
+}
+
+.logo-section h1 {
+  color: white;
+  font-size: 2rem;
+  font-weight: 800;
+
+  margin-bottom: 10px;
+}
+
+.logo-section p {
+  color: #94a3b8;
+  font-size: 1rem;
+}
+
+/* CARD */
+.login-card {
+  border-radius: 28px;
+
+  background: rgba(255,255,255,0.08);
+
+  backdrop-filter: blur(14px);
+
+  border: 1px solid rgba(255,255,255,0.1);
+
+  box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+}
+
+/* ITEMS */
+.custom-item {
+  --background: rgba(255,255,255,0.05);
+
+  --border-color: transparent;
+
+  margin-bottom: 18px;
+
+  border-radius: 18px;
+
+  color: white;
+}
+
+.custom-item ion-icon {
+  color: #38bdf8;
+}
+
+/* INPUT */
+ion-input {
+  --color: white;
+  --placeholder-color: #94a3b8;
+}
+
+/* MENSAJE */
+.mensaje {
+  text-align: center;
+
+  margin: 10px 0 20px;
+}
+
+/* BOTONES */
+.btn-group {
+  margin-top: 10px;
+}
+
+.login-btn {
+  --background: linear-gradient(
+    135deg,
+    #06b6d4,
+    #3b82f6
+  );
+
+  --border-radius: 18px;
+
+  height: 52px;
+
+  font-weight: bold;
+
+  margin-bottom: 14px;
+
+  box-shadow: 0 8px 20px rgba(59,130,246,0.35);
+}
+
+.register-btn {
+  --border-radius: 18px;
+
+  height: 52px;
+
+  font-weight: 600;
+
+  --border-color: rgba(255,255,255,0.2);
+
+  --color: white;
+}
+
+/* BOTON INVITADO */
+.guest-btn {
+  margin-top: 14px;
+
+  --border-color: rgba(255,255,255,0.2);
+
+  --color: white;
+
+  --border-radius: 14px;
+
+  height: 50px;
+
+  font-weight: 600;
+}

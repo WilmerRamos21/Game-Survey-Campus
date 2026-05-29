@@ -1,0 +1,47 @@
+<ion-header class="ion-no-border custom-header">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/encuestas" (click)="regresar()"></ion-back-button>
+    </ion-buttons>
+    <h1 class="dashboard-title">📊 Dashboard</h1>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="content-bg ion-padding">
+
+  <ion-card class="dashboard-card main-stat">
+    <ion-card-content>
+      <p class="stat-label">Total de Encuestas</p>
+      <h1 class="stat-number">{{ totalEncuestas }}</h1>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card class="dashboard-card">
+    <ion-card-content>
+      <h2 class="chart-title">🎮 Géneros Favoritos</h2>
+      <div class="chart-container">
+        <canvas
+          baseChart
+          [data]="pieChartData"
+          [type]="pieChartType"
+          [options]="chartOptions">
+        </canvas>
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card class="dashboard-card">
+    <ion-card-content>
+      <h2 class="chart-title">💻 Plataformas</h2>
+      <div class="chart-container">
+        <canvas
+          baseChart
+          [data]="barChartData"
+          [type]="barChartType"
+          [options]="chartOptions">
+        </canvas>
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>

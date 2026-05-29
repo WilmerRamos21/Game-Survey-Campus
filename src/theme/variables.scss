@@ -1,2 +1,8 @@
 // For information on how to create your own theme, please refer to:
 // https://ionicframework.com/docs/theming/
+
+:root {
+  /* ... tus otras variables ... */
+  
+  --ion-splash-background: #f1f5f9; // Pon aquí el color hexadecimal exacto del fondo gris claro de tu icono
+}

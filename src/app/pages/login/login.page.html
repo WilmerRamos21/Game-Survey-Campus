@@ -1,0 +1,140 @@
+<ion-header class="login-header">
+
+  <ion-toolbar>
+
+    <ion-title>
+      🎮 Game Center
+    </ion-title>
+
+  </ion-toolbar>
+
+</ion-header>
+
+<ion-content [fullscreen]="true" class="login-bg">
+
+  <!-- CONTENEDOR -->
+  <div class="login-container">
+
+    <!-- LOGO -->
+    <div class="logo-section">
+
+      <div class="logo-circle">
+        <ion-icon name="game-controller-outline"></ion-icon>
+      </div>
+
+      <h1>Bienvenido</h1>
+
+      <p>
+        Inicia sesión para continuar
+      </p>
+
+    </div>
+
+    <!-- CARD -->
+    <ion-card class="login-card">
+
+      <ion-card-content>
+
+        <!-- EMAIL -->
+        <ion-item class="custom-item">
+
+          <ion-icon
+            name="mail-outline"
+            slot="start">
+          </ion-icon>
+
+          <ion-input
+            type="email"
+            label="Correo"
+            labelPlacement="stacked"
+            placeholder="ejemplo@gmail.com"
+            [(ngModel)]="email">
+          </ion-input>
+
+        </ion-item>
+
+        <!-- PASSWORD -->
+        <ion-item class="custom-item">
+
+          <ion-icon
+            name="lock-closed-outline"
+            slot="start">
+          </ion-icon>
+
+          <ion-input
+            type="password"
+            label="Contraseña"
+            labelPlacement="stacked"
+            placeholder="********"
+            [(ngModel)]="password">
+          </ion-input>
+
+        </ion-item>
+
+        <!-- ERROR -->
+        <div class="mensaje" *ngIf="mensaje">
+
+          <ion-text color="danger">
+            {{ mensaje }}
+          </ion-text>
+
+        </div>
+
+        <!-- BOTONES -->
+        <div class="btn-group">
+
+          <ion-button
+            expand="block"
+            class="login-btn"
+            (click)="login()"
+          >
+
+            <ion-icon
+              name="log-in-outline"
+              slot="start">
+            </ion-icon>
+
+            Iniciar Sesión
+
+          </ion-button>
+
+          <ion-button
+            expand="block"
+            fill="outline"
+            class="register-btn"
+            (click)="register()"
+          >
+
+            <ion-icon
+              name="person-add-outline"
+              slot="start">
+            </ion-icon>
+
+            Crear Cuenta
+
+          </ion-button>
+          <ion-button
+            expand="block"
+            fill="outline"
+            class="guest-btn"
+            (click)="entrarInvitado()"
+          >
+
+            <ion-icon
+              name="game-controller-outline"
+              slot="start">
+            </ion-icon>
+
+            Continuar como invitado
+
+          </ion-button>
+
+        </div>
+
+      </ion-card-content>
+
+    </ion-card>
+
+  </div>
+
+</ion-content>

@@ -1,0 +1,402 @@
+<ion-header class="custom-header">
+
+  <ion-toolbar>
+
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/encuestas"></ion-back-button>
+    </ion-buttons>
+
+    <ion-title>
+      {{ id ? 'Editar Encuesta' : 'Nueva Encuesta' }}
+    </ion-title>
+
+  </ion-toolbar>
+
+</ion-header>
+
+<ion-content fullscreen="true" class="content-bg">
+
+  <!-- HERO -->
+  <div class="hero-section">
+
+    <div class="image-container">
+
+      <img
+        *ngIf="encuesta.foto_url"
+        [src]="encuesta.foto_url"
+        class="cover-image"
+      />
+
+      <div *ngIf="!encuesta.foto_url" class="placeholder">
+
+        <ion-icon name="people-outline"></ion-icon>
+
+        <p>Evidencia de la encuesta</p>
+
+      </div>
+
+    </div>
+
+  </div>
+  
+
+  <!-- CARD INFO -->
+  <ion-card class="glass-card">
+
+    <ion-card-header>
+      <ion-card-title>
+        Información de la Encuesta
+      </ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+
+      <!-- NOMBRE -->
+      <ion-item class="custom-item">
+
+        <ion-icon
+          name="person-outline"
+          slot="start">
+        </ion-icon>
+
+        <ion-input
+          label="Nombre o Alias"
+          labelPlacement="stacked"
+          [(ngModel)]="encuesta.nombre_alias"
+          placeholder="Ej. AlexGamer">
+        </ion-input>
+
+      </ion-item>
+
+      <!-- EDAD Y ROL -->
+      <ion-row>
+
+        <ion-col size="6">
+
+          <ion-item class="custom-item">
+
+            <ion-icon
+              name="calendar-outline"
+              slot="start">
+            </ion-icon>
+
+            <ion-input
+              label="Edad aproximada"
+              labelPlacement="stacked"
+              [(ngModel)]="encuesta.edad_rango"
+              placeholder="18-25">
+            </ion-input>
+
+          </ion-item>
+
+        </ion-col>
+
+        <ion-col size="6">
+
+          <ion-item class="custom-item">
+
+            <ion-icon
+              name="school-outline"
+              slot="start">
+            </ion-icon>
+
+            <ion-input
+              label="Rol"
+              labelPlacement="stacked"
+              [(ngModel)]="encuesta.rol"
+              placeholder="Estudiante">
+            </ion-input>
+
+          </ion-item>
+
+        </ion-col>
+
+      </ion-row>
+
+      <!-- VIDEOJUEGO -->
+      <ion-item class="custom-item">
+
+        <ion-icon
+          name="game-controller-outline"
+          slot="start">
+        </ion-icon>
+
+      <ion-input
+        label="Videojuego Favorito"
+        labelPlacement="stacked"
+        [(ngModel)]="encuesta.videojuego_favorito"
+        (keyup.enter)="buscarJuego()"
+        placeholder="Ej. Fortnite">
+      </ion-input>
+
+      <ion-button
+        expand="block"
+        size="small"
+        color="primary"
+        (click)="buscarJuego()"
+      >
+        Buscar Juego
+      </ion-button>
+
+      </ion-item>
+
+      <!-- INFO API -->
+      <div
+        *ngIf="infoJuego"
+        class="api-card"
+      >
+
+        <img
+          [src]="infoJuego.background_image"
+          class="api-image"
+        />
+
+        <div class="api-info">
+
+          <h2>
+            {{ infoJuego.name }}
+          </h2>
+
+          <p>
+            ⭐ Rating: {{ infoJuego.rating }}
+          </p>
+
+          <div class="api-tags">
+
+            <ion-badge color="primary">
+
+              {{
+                infoJuego.genres?.[0]?.name
+              }}
+
+            </ion-badge>
+
+            <ion-badge color="tertiary">
+
+              {{
+                infoJuego.platforms?.[0]?.platform?.name
+              }}
+
+            </ion-badge>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- PLATAFORMA Y GÉNERO -->
+      <ion-row>
+
+        <ion-col size="6">
+
+          <ion-item class="custom-item">
+
+            <ion-icon
+              name="desktop-outline"
+              slot="start">
+            </ion-icon>
+
+            <ion-input
+              label="Plataforma"
+              labelPlacement="stacked"
+              [(ngModel)]="encuesta.plataforma"
+              placeholder="PC / Consola">
+            </ion-input>
+
+          </ion-item>
+
+        </ion-col>
+
+        <ion-col size="6">
+
+          <ion-item class="custom-item">
+
+            <ion-icon
+              name="grid-outline"
+              slot="start">
+            </ion-icon>
+
+            <ion-input
+              label="Género Favorito"
+              labelPlacement="stacked"
+              [(ngModel)]="encuesta.genero_favorito"
+              placeholder="RPG">
+            </ion-input>
+
+          </ion-item>
+
+        </ion-col>
+
+      </ion-row>
+
+      <!-- LUGAR -->
+      <ion-item class="custom-item">
+
+        <ion-icon
+          name="location-outline"
+          slot="start">
+        </ion-icon>
+
+        <ion-select
+          label="Lugar del campus"
+          labelPlacement="stacked"
+          [(ngModel)]="encuesta.lugar"
+        >
+
+          <ion-select-option value="Biblioteca">
+            Biblioteca
+          </ion-select-option>
+
+          <ion-select-option value="Cafetería">
+            Cafetería
+          </ion-select-option>
+
+          <ion-select-option value="Patio Central">
+            Patio Central
+          </ion-select-option>
+
+          <ion-select-option value="Laboratorio">
+            Laboratorio
+          </ion-select-option>
+
+          <ion-select-option value="Entrada Principal">
+            Entrada Principal
+          </ion-select-option>
+
+        </ion-select>
+
+      </ion-item>
+
+      <!-- COMENTARIO -->
+      <ion-item class="custom-item textarea-item">
+
+        <ion-icon
+          name="chatbubble-ellipses-outline"
+          slot="start">
+        </ion-icon>
+
+        <ion-textarea
+          label="Comentario"
+          labelPlacement="stacked"
+          autoGrow="true"
+          rows="5"
+          maxlength="300"
+          placeholder="Comentario breve sobre la encuesta..."
+          [(ngModel)]="encuesta.comentario">
+        </ion-textarea>
+
+      </ion-item>
+
+    </ion-card-content>
+
+  </ion-card>
+
+  <!-- MULTIMEDIA -->
+  <ion-card class="glass-card">
+
+    <ion-card-header>
+      <ion-card-title>
+        Evidencia
+      </ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+
+
+      <!-- FOTO -->
+      <div class="upload-buttons">
+
+        <ion-button
+          expand="block"
+          color="primary"
+          (click)="tomarFoto()"
+        >
+
+          <ion-icon
+            name="camera-outline"
+            slot="start">
+          </ion-icon>
+
+          Tomar Foto
+
+        </ion-button>
+
+        <ion-button
+          expand="block"
+          color="secondary"
+          (click)="seleccionarDesdeGaleria()"
+        >
+
+          <ion-icon
+            name="images-outline"
+            slot="start">
+          </ion-icon>
+
+          Galería
+
+        </ion-button>
+        <!-- PREVIEW -->
+        <div
+          *ngIf="previewImagen"
+          class="preview-container"
+        >
+
+          <img
+            [src]="previewImagen"
+            class="preview-image"
+          />
+
+        </div>
+
+      </div>
+
+
+      <!-- UBICACION -->
+      <div class="gps-box">
+
+        <ion-icon name="navigate-outline"></ion-icon>
+
+        <div>
+
+          <h3>Ubicación GPS</h3>
+
+          <p>
+            Latitud:
+            {{ encuesta.latitud || 'No registrada' }}
+          </p>
+
+          <p>
+            Longitud:
+            {{ encuesta.longitud || 'No registrada' }}
+          </p>
+
+        </div>
+
+      </div>
+
+    </ion-card-content>
+
+  </ion-card>
+
+  <!-- BOTON -->
+  <div class="btn-container">
+
+    <ion-button
+      expand="block"
+      class="save-btn"
+      (click)="guardar()"
+    >
+
+      <ion-icon
+        name="save-outline"
+        slot="start">
+      </ion-icon>
+
+      {{ id ? 'Actualizar Encuesta' : 'Guardar Encuesta' }}
+
+    </ion-button>
+
+  </div>
+
+</ion-content>
